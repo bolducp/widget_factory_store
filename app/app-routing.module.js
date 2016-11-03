@@ -8,21 +8,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
-        this.title = "Widget Factory";
+var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
+var store_component_1 = require("./store.component");
+var order_component_1 = require("./order.component");
+var routes = [
+    { path: "", redirectTo: "/store", pathMatch: "full" },
+    { path: "store", component: store_component_1.StoreComponent },
+    { path: "order/:id", component: order_component_1.OrderComponent }
+];
+var AppRoutingModule = (function () {
+    function AppRoutingModule() {
     }
-    AppComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'widget-app',
-            template: "\n    <h1>{{title}}</h1>\n    <nav>\n        <a routerLink=\"/store\" routerLinkActive=\"active\">Shop</a>\n        <a routerLink=\"/order/8\" routerLinkActive=\"active\">Order</a>\n    </nav>\n    <router-outlet></router-outlet>\n    ",
-            styleUrls: ['app.component.css']
+    AppRoutingModule = __decorate([
+        core_1.NgModule({
+            imports: [router_1.RouterModule.forRoot(routes)],
+            exports: [router_1.RouterModule]
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], AppRoutingModule);
+    return AppRoutingModule;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.AppRoutingModule = AppRoutingModule;
+//# sourceMappingURL=app-routing.module.js.map

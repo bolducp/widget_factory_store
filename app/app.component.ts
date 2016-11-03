@@ -1,8 +1,19 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component({
-  selector: "widget-app",
-  template: "<h1>Landing page</h1>"
+  moduleId: module.id,
+  selector: 'widget-app',
+  template: `
+    <h1>{{title}}</h1>
+    <nav>
+        <a routerLink="/store" routerLinkActive="active">Shop</a>
+        <a routerLink="/order/8" routerLinkActive="active">Order</a>
+    </nav>
+    <router-outlet></router-outlet>
+    `,
+  styleUrls: ['app.component.css']
 })
 
-export class AppComponent { }
+export class AppComponent {
+  title = "Widget Factory";
+}
