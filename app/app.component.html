@@ -1,0 +1,17 @@
+<div id="video_wrapper">
+    <video id="background_video" autoplay muted loop>
+        <source src="/app/assets/street_video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div id="landing">
+        <h1>{{title}}</h1>
+        <h3>The Uber of Widgets</h3>
+        <nav>
+            <a routerLink="/store" routerLinkActive="active">Shop for Widgets</a>
+            <a routerLink="/order/8" routerLinkActive="active">View an Order</a>
+        </nav>
+    </div>
+</div>
+
+<router-outlet></router-outlet>
+

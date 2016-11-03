@@ -3,14 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   moduleId: module.id,
   selector: 'widget-app',
-  template: `
-    <h1>{{title}}</h1>
-    <nav>
-        <a routerLink="/store" routerLinkActive="active">Shop</a>
-        <a routerLink="/order/8" routerLinkActive="active">Order</a>
-    </nav>
-    <router-outlet></router-outlet>
-    `,
+  templateUrl: "app.component.html",
   styleUrls: ['app.component.css']
 })
 
