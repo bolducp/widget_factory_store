@@ -26,7 +26,6 @@ export class OrderComponent implements OnInit {
             let id = +params["id"];
 
             if (typeof id === Number) {
-                console.log(typeof id);
                 this.orderDataService.getOrder(id)
                     .subscribe((order) => {
                         this.order = order;
@@ -35,7 +34,6 @@ export class OrderComponent implements OnInit {
                 this.orderDataService.getAllOrders()
                     .subscribe((orders) => {
                         this.orders = orders;
-                        console.log(orders);
                     });
             }
         }

@@ -38,7 +38,6 @@ export class StoreComponent implements OnInit {
     }
 
     getOrder(id: string) {
-        console.log(id);
         this.orderDataService.getOrder(id)
             .subscribe((data) => {
                 this.currentOrderId = data.order_id;

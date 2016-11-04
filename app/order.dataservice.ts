@@ -62,8 +62,6 @@ export class OrderDataService {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         let bodyString = JSON.stringify({"name": name});
-        console.log("NAME", name);
-        console.log(bodyString)
 
         return Observable.create((observable) => {
             this.http
