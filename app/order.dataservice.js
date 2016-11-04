@@ -47,6 +47,27 @@ var OrderDataService = (function () {
             });
         });
     };
+    OrderDataService.prototype.createNewOrder = function (name) {
+        var _this = this;
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        var bodyString = JSON.stringify({ "name": name });
+        console.log("NAME", name);
+        console.log(bodyString);
+        return rxjs_1.Observable.create(function (observable) {
+            _this.http
+                .post("https://challenge.emocha.com/order", bodyString, options)
+                .map(function (r) { return r.json().data; })
+                .subscribe(function (data) {
+                observable.next(data);
+                observable.complete();
+            }, function (error) {
+                console.error("Error caught while getting all orders: ", error);
+                observable.next([]);
+                observable.complete();
+            });
+        });
+    };
     OrderDataService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])

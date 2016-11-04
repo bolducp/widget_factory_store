@@ -17,7 +17,8 @@ export class StoreComponent implements OnInit {
     widgets: Array<Widget>;
     categories: Array<Category>;
     selectedCategoryID: number = null;
-    currentOrder: Order = null;
+    currentOrderName: string = null;
+    currentOrderId: number = null;
 
     constructor(
         private router: Router,
@@ -34,6 +35,13 @@ export class StoreComponent implements OnInit {
 
     goToOrdersPage(id) {
         this.router.navigate(["/orders", id]);
+    }
+
+    createOrder(name: string) {
+        this.orderDataService.createNewOrder(name)
+            .subscribe((data) => {
+                this.currentOrderId = data.order_id;
+            });
     }
 
     updateInventoryList(categoryId: number) {

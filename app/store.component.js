@@ -18,7 +18,8 @@ var StoreComponent = (function () {
         this.widgetDataService = widgetDataService;
         this.orderDataService = orderDataService;
         this.selectedCategoryID = null;
-        this.currentOrder = null;
+        this.currentOrderName = null;
+        this.currentOrderId = null;
     }
     StoreComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -29,6 +30,13 @@ var StoreComponent = (function () {
     };
     StoreComponent.prototype.goToOrdersPage = function (id) {
         this.router.navigate(["/orders", id]);
+    };
+    StoreComponent.prototype.createOrder = function (name) {
+        var _this = this;
+        this.orderDataService.createNewOrder(name)
+            .subscribe(function (data) {
+            _this.currentOrderId = data.order_id;
+        });
     };
     StoreComponent.prototype.updateInventoryList = function (categoryId) {
         var _this = this;
