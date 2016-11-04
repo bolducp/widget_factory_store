@@ -63,6 +63,23 @@ var WidgetDataService = (function () {
             });
         });
     };
+    WidgetDataService.prototype.getWidgetColor = function (id) {
+        var _this = this;
+        return rxjs_1.Observable.create(function (observable) {
+            _this.http
+                .get("https://challenge.emocha.com/color/" + id)
+                .map(function (r) { return r.json().data.item; })
+                .subscribe(function (data) {
+                console.log(data);
+                observable.next(data);
+                observable.complete();
+            }, function (error) {
+                console.error("Error caught while getting widgets by category: ", error);
+                observable.next([]);
+                observable.complete();
+            });
+        });
+    };
     WidgetDataService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])

@@ -10,9 +10,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var widget_1 = require("./widget");
+var widget_dataservice_1 = require("./widget.dataservice");
 var WidgetListingComponent = (function () {
-    function WidgetListingComponent() {
+    function WidgetListingComponent(widgetDataService) {
+        this.widgetDataService = widgetDataService;
     }
+    WidgetListingComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.widgetDataService.getWidgetColor(this.widget.color_id)
+            .subscribe(function (color) {
+            _this.color = color.name;
+        });
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', widget_1.Widget)
@@ -23,7 +32,7 @@ var WidgetListingComponent = (function () {
             templateUrl: "app/widget.listing.component.html",
             styleUrls: ["app/widget.listing.component.css"]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [widget_dataservice_1.WidgetDataService])
     ], WidgetListingComponent);
     return WidgetListingComponent;
 }());

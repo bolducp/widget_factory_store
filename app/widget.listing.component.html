@@ -1,6 +1,8 @@
 <div class="listing">
     <p>{{widget.name}}</p>
-    <div class="widget_icon"></div>
+    <div class="widget_icon" [ngStyle]="{'border-color': color}"></div>
+    <p *ngIf="color">Color: {{color}}</p>
     <p *ngIf="widget.description">Description: {{widget.description}}</p>
-    <p *ngIf="widget.price_cents">{{ (widget.price_cents / 100) |  currency:'USD':true:'1.2-2'}}</p>
+    <p *ngIf="widget.in_stock">Currently in stock: {{widget.in_stock}}</p>
+    <p *ngIf="widget.price_cents">Price: {{ (widget.price_cents / 100) |  currency:'USD':true:'1.2-2'}}</p>
 </div>

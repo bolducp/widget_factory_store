@@ -59,6 +59,25 @@ export class WidgetDataService {
         });
 
     }
+
+    getWidgetColor(id: number): Observable<string> {
+        return Observable.create((observable) => {
+            this.http
+                .get("https://challenge.emocha.com/color/" + id)
+                .map((r: Response) => r.json().data.item)
+                .subscribe((data) => {
+                    console.log(data);
+                        observable.next(data);
+                        observable.complete();
+                 }, (error) => {
+                        console.error("Error caught while getting widgets by category: ", error);
+                        observable.next([]);
+                        observable.complete();
+                    }
+                );
+        });
+
+    }
 }
 
 export class Category {
