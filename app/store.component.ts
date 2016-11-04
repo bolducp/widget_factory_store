@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 
 import { Widget } from "./widget";
-import { WidgetDataService } from "./widget.dataservice";
+import { WidgetDataService, Category } from "./widget.dataservice";
 
 @Component({
     moduleId: module.id,
@@ -13,6 +13,8 @@ import { WidgetDataService } from "./widget.dataservice";
 
 export class StoreComponent implements OnInit {
     widgets: Array<Widget>;
+    categories: Array<Category>;
+    selectedCategoryID: number = null;
 
     constructor(
         private router: Router,
@@ -20,14 +22,18 @@ export class StoreComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.widgetDataService.getAllWidgets()
+        this.widgetDataService.getCategories()
+            .subscribe((categories) => {
+                this.categories = categories;
+            });
+    }
+
+    updateInventoryList(categoryId: number) {
+        this.selectedCategoryID = categoryId;
+
+        this.widgetDataService.getWidgetsByCategory(categoryId)
             .subscribe((widgets) => {
                 this.widgets = widgets;
             });
     }
-
-//   gotoDetail(hero: Hero): void {
-//     let link = ["/detail", hero.id];
-//     this.router.navigate(link);
-//   }
 }

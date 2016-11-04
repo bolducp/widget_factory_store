@@ -15,10 +15,19 @@ var StoreComponent = (function () {
     function StoreComponent(router, widgetDataService) {
         this.router = router;
         this.widgetDataService = widgetDataService;
+        this.selectedCategoryID = null;
     }
     StoreComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.widgetDataService.getAllWidgets()
+        this.widgetDataService.getCategories()
+            .subscribe(function (categories) {
+            _this.categories = categories;
+        });
+    };
+    StoreComponent.prototype.updateInventoryList = function (categoryId) {
+        var _this = this;
+        this.selectedCategoryID = categoryId;
+        this.widgetDataService.getWidgetsByCategory(categoryId)
             .subscribe(function (widgets) {
             _this.widgets = widgets;
         });

@@ -31,6 +31,38 @@ var WidgetDataService = (function () {
             });
         });
     };
+    WidgetDataService.prototype.getCategories = function () {
+        var _this = this;
+        return rxjs_1.Observable.create(function (observable) {
+            _this.http
+                .get("https://challenge.emocha.com/categories")
+                .map(function (r) { return r.json().data.items; })
+                .subscribe(function (data) {
+                observable.next(data);
+                observable.complete();
+            }, function (error) {
+                console.error("Error caught while getting categories: ", error);
+                observable.next([]);
+                observable.complete();
+            });
+        });
+    };
+    WidgetDataService.prototype.getWidgetsByCategory = function (id) {
+        var _this = this;
+        return rxjs_1.Observable.create(function (observable) {
+            _this.http
+                .get("https://challenge.emocha.com/widgets?category_id=" + id)
+                .map(function (r) { return r.json().data.items; })
+                .subscribe(function (data) {
+                observable.next(data);
+                observable.complete();
+            }, function (error) {
+                console.error("Error caught while getting widgets by category: ", error);
+                observable.next([]);
+                observable.complete();
+            });
+        });
+    };
     WidgetDataService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
@@ -38,4 +70,10 @@ var WidgetDataService = (function () {
     return WidgetDataService;
 }());
 exports.WidgetDataService = WidgetDataService;
+var Category = (function () {
+    function Category() {
+    }
+    return Category;
+}());
+exports.Category = Category;
 //# sourceMappingURL=widget.dataservice.js.map

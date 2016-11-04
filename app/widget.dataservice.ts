@@ -23,4 +23,46 @@ export class WidgetDataService {
                 );
         });
     }
+
+    getCategories(): Observable<Array<string>> {
+        return Observable.create((observable) => {
+            this.http
+                .get("https://challenge.emocha.com/categories")
+                .map((r: Response) => r.json().data.items)
+                .subscribe((data) => {
+                        observable.next(data);
+                        observable.complete();
+                 }, (error) => {
+                        console.error("Error caught while getting categories: ", error);
+                        observable.next([]);
+                        observable.complete();
+                    }
+                );
+        });
+
+    }
+
+    getWidgetsByCategory(id: number): Observable<Array<string>> {
+        return Observable.create((observable) => {
+            this.http
+                .get("https://challenge.emocha.com/widgets?category_id=" + id)
+                .map((r: Response) => r.json().data.items)
+                .subscribe((data) => {
+                        observable.next(data);
+                        observable.complete();
+                 }, (error) => {
+                        console.error("Error caught while getting widgets by category: ", error);
+                        observable.next([]);
+                        observable.complete();
+                    }
+                );
+        });
+
+    }
+}
+
+export class Category {
+    category_id: number;
+    name: string;
+    parent_category_id: number;
 }

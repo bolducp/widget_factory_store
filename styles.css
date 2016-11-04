@@ -1,1 +1,12 @@
+body {
+    font-family: 'Josefin Sans', sans-serif;
+    background-color:#85929E ;
+}
 
+h1, h2, h3 { 
+    font-family: 'Shadows Into Light', cursive;
+}
+
+a {
+    text-decoration: none;
+}

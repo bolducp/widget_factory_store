@@ -30,6 +30,9 @@ a {
     margin-top: 10%;
 }
 
+.active {
+    color: #FAD7A0;
+}
 
 @media (max-width: 525px) {
     #background_video {
