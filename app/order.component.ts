@@ -13,6 +13,7 @@ import { OrderDataService } from "./order.dataservice";
 
 export class OrderComponent implements OnInit {
     order: Order;
+    orders: Array<any>;
 
     constructor(
         private router: Router,
@@ -22,11 +23,21 @@ export class OrderComponent implements OnInit {
 
     ngOnInit(): void {
         this.route.params.forEach((params: Params) => {
-            let id = +params['id'];
-            this.orderDataService.getOrder(id)
-                .subscribe((order) => {
-                    this.order = order;
+            let id = +params["id"];
+
+            if (typeof id === Number) {
+                console.log(typeof id);
+                this.orderDataService.getOrder(id)
+                    .subscribe((order) => {
+                        this.order = order;
                 });
-            });
+            } else {
+                this.orderDataService.getAllOrders()
+                    .subscribe((orders) => {
+                        this.orders = orders;
+                        console.log(orders);
+                    });
+            }
         }
+    }
 }

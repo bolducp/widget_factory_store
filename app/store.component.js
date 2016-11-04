@@ -11,11 +11,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var widget_dataservice_1 = require("./widget.dataservice");
+var order_dataservice_1 = require("./order.dataservice");
 var StoreComponent = (function () {
-    function StoreComponent(router, widgetDataService) {
+    function StoreComponent(router, widgetDataService, orderDataService) {
         this.router = router;
         this.widgetDataService = widgetDataService;
+        this.orderDataService = orderDataService;
         this.selectedCategoryID = null;
+        this.currentOrder = null;
     }
     StoreComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -23,6 +26,9 @@ var StoreComponent = (function () {
             .subscribe(function (categories) {
             _this.categories = categories;
         });
+    };
+    StoreComponent.prototype.goToOrdersPage = function (id) {
+        this.router.navigate(["/orders", id]);
     };
     StoreComponent.prototype.updateInventoryList = function (categoryId) {
         var _this = this;
@@ -39,7 +45,7 @@ var StoreComponent = (function () {
             templateUrl: "store.component.html",
             styleUrls: ["store.component.css"]
         }), 
-        __metadata('design:paramtypes', [router_1.Router, widget_dataservice_1.WidgetDataService])
+        __metadata('design:paramtypes', [router_1.Router, widget_dataservice_1.WidgetDataService, order_dataservice_1.OrderDataService])
     ], StoreComponent);
     return StoreComponent;
 }());

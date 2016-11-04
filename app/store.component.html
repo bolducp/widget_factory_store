@@ -1,5 +1,21 @@
-<div class="store">
-    <h3>The Widget Factory Store</h3>
+<div id="store_wrapper">
+    <h1>The Widget Factory Store</h1>
+     
+    <div *ngIf="!currentOrder">
+        <h2>Your cart is empty.</h2>
+        <form (ngSubmit)="createOrder()">
+            <label>Order name: </label>
+            <input required type="text" [(ngModel)]="searchName" [ngModelOptions]="{standalone: true}" />
+            <button type="submit" class="action-button small">Begin an order!</button>
+        </form>
+    </div>
+
+    <div *ngIf="currentOrder">
+        <h2>Your cart has {{currentOrder.order_items.length}} item(s).</h2>
+        <button (click)="goToOrdersPage(currentOrder.order_id)">View Order.</button>
+    </div>
+
+
     <div>
         <h4>Browse for widgets by category</h4>
         <select (change)="updateInventoryList($event.target.value)">

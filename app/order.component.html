@@ -1,4 +1,13 @@
-<h3>Order</h3>
-<div *ngIf="order" class="grid grid-pad">
-    <h4>{{order.name}}</h4>
+<div id="order_wrapper">
+    <h1>Widget Orders</h1>
+    <div *ngIf="order" class="grid grid-pad">
+        <h4>{{order.name}}</h4>
+    </div>
+
+    <div *ngIf="orders">
+        <div *ngFor="let order of orders" class="orders">
+            <h4 *ngIf="order.name">Order name: {{order.name}}</h4>
+            <p>Order number: {{order.order_id}}</p>
+        </div>
+    </div>
 </div>

@@ -20,11 +20,21 @@ var OrderComponent = (function () {
     OrderComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.params.forEach(function (params) {
-            var id = +params['id'];
-            _this.orderDataService.getOrder(id)
-                .subscribe(function (order) {
-                _this.order = order;
-            });
+            var id = +params["id"];
+            if (typeof id === Number) {
+                console.log(typeof id);
+                _this.orderDataService.getOrder(id)
+                    .subscribe(function (order) {
+                    _this.order = order;
+                });
+            }
+            else {
+                _this.orderDataService.getAllOrders()
+                    .subscribe(function (orders) {
+                    _this.orders = orders;
+                    console.log(orders);
+                });
+            }
         });
     };
     OrderComponent = __decorate([

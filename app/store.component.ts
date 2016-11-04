@@ -3,6 +3,8 @@ import { Router } from "@angular/router";
 
 import { Widget } from "./widget";
 import { WidgetDataService, Category } from "./widget.dataservice";
+import { Order } from "./order";
+import { OrderDataService } from "./order.dataservice";
 
 @Component({
     moduleId: module.id,
@@ -15,10 +17,12 @@ export class StoreComponent implements OnInit {
     widgets: Array<Widget>;
     categories: Array<Category>;
     selectedCategoryID: number = null;
+    currentOrder: Order = null;
 
     constructor(
         private router: Router,
-        private widgetDataService: WidgetDataService) {
+        private widgetDataService: WidgetDataService,
+        private orderDataService: OrderDataService) {
     }
 
     ngOnInit(): void {
@@ -26,6 +30,10 @@ export class StoreComponent implements OnInit {
             .subscribe((categories) => {
                 this.categories = categories;
             });
+    }
+
+    goToOrdersPage(id) {
+        this.router.navigate(["/orders", id]);
     }
 
     updateInventoryList(categoryId: number) {

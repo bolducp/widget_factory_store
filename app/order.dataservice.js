@@ -31,6 +31,22 @@ var OrderDataService = (function () {
             });
         });
     };
+    OrderDataService.prototype.getAllOrders = function () {
+        var _this = this;
+        return rxjs_1.Observable.create(function (observable) {
+            _this.http
+                .get("https://challenge.emocha.com/orders")
+                .map(function (r) { return r.json().data.items; })
+                .subscribe(function (data) {
+                observable.next(data);
+                observable.complete();
+            }, function (error) {
+                console.error("Error caught while getting all orders: ", error);
+                observable.next([]);
+                observable.complete();
+            });
+        });
+    };
     OrderDataService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])

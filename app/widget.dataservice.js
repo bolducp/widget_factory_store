@@ -87,10 +87,4 @@ var WidgetDataService = (function () {
     return WidgetDataService;
 }());
 exports.WidgetDataService = WidgetDataService;
-var Category = (function () {
-    function Category() {
-    }
-    return Category;
-}());
-exports.Category = Category;
 //# sourceMappingURL=widget.dataservice.js.map

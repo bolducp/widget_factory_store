@@ -15,7 +15,8 @@ var order_component_1 = require("./order.component");
 var routes = [
     { path: "", redirectTo: "/store", pathMatch: "full" },
     { path: "store", component: store_component_1.StoreComponent },
-    { path: "order/:id", component: order_component_1.OrderComponent }
+    { path: "orders/:id", component: order_component_1.OrderComponent },
+    { path: "orders", component: order_component_1.OrderComponent }
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {
