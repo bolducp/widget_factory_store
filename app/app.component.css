@@ -39,3 +39,21 @@ a {
         width: 160vw;
     }
 }
+
+@media (max-width: 525px) {
+    #video_wrapper {
+        height: 50vh;
+    }
+}
+
+@media (min-width: 526px) and (max-width: 800px) {
+    #video_wrapper {
+        height: 60vh;
+    }
+}
+
+@media (min-width: 801px) and (max-width: 1024px) {
+    #video_wrapper {
+        height: 70vh;
+    }
+}
