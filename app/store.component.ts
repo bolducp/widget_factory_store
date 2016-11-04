@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 
 import { Widget } from "./widget";
-import { WidgetDataService, Category } from "./widget.dataservice";
+import { WidgetDataService } from "./widget.dataservice";
 import { Order } from "./order";
 import { OrderDataService } from "./order.dataservice";
 
@@ -15,7 +15,7 @@ import { OrderDataService } from "./order.dataservice";
 
 export class StoreComponent implements OnInit {
     widgets: Array<Widget>;
-    categories: Array<Category>;
+    categories: Array<any>;
     selectedCategoryID: number = null;
     currentOrderName: string = null;
     currentOrderId: number = null;

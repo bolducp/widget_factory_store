@@ -1,3 +1,4 @@
+// afj
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute, Params } from "@angular/router";
 
@@ -21,21 +22,22 @@ export class OrderComponent implements OnInit {
         private orderDataService: OrderDataService) {
     }
 
-    ngOnInit(): void {
+    ngOnInit(): void  {
         this.route.params.forEach((params: Params) => {
-            let id = +params["id"];
+            let id = params["id"];
 
-            if (typeof id === Number) {
+            if (!isNaN(id)) {
                 this.orderDataService.getOrder(id)
                     .subscribe((order) => {
                         this.order = order;
                 });
-            } else {
+            } 
+            else {
                 this.orderDataService.getAllOrders()
                     .subscribe((orders) => {
                         this.orders = orders;
                     });
             }
-        }
+        })
     }
 }

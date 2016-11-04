@@ -7,23 +7,6 @@ import { Order } from "./order";
 export class OrderDataService {
     constructor(private http: Http) {}
 
-     getOrder(id: number): Observable<Array<Widget>> {
-        return Observable.create((observable) => {
-            this.http
-                .get(`https://challenge.emocha.com/order/${id}`)
-                .map((r: Response) => r.json().data.item)
-                .subscribe((data) => {
-                        observable.next(data);
-                        observable.complete();
-                 }, (error) => {
-                        console.error("Error caught while getting widgets: ", error);
-                        observable.next([]);
-                        observable.complete();
-                    }
-                );
-        });
-     }
-
      getAllOrders(): Observable<Array<Order>> {
         return Observable.create((observable) => {
             this.http
@@ -41,7 +24,7 @@ export class OrderDataService {
         });
      }
 
-     getOrder(orderId: string): Observable<Array<Order>> {
+     getOrder(orderId: string): Observable<Order> {
         return Observable.create((observable) => {
             this.http
                 .get(`https://challenge.emocha.com/order/${orderId}`)

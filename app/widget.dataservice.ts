@@ -42,7 +42,7 @@ export class WidgetDataService {
 
     }
 
-    getWidgetsByCategory(id: number): Observable<Array<string>> {
+    getWidgetsByCategory(id: number): Observable<Array<Widget>> {
         return Observable.create((observable) => {
             this.http
                 .get("https://challenge.emocha.com/widgets?category_id=" + id)
@@ -60,7 +60,7 @@ export class WidgetDataService {
 
     }
 
-    getWidgetColor(id: number): Observable<string> {
+    getWidgetColor(id: number): Observable<any> {
         return Observable.create((observable) => {
             this.http
                 .get("https://challenge.emocha.com/color/" + id)
