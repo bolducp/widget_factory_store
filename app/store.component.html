@@ -2,9 +2,14 @@
     <h1>The Widget Factory Store</h1>
      
     <div *ngIf="!currentOrderId">
-        <h2>Your cart is empty.</h2>
+        <h3>Choose an existing order or create a new order to purchase widgets.</h3>
+         <form (ngSubmit)="getOrder(id.value)">
+            <label>Find exisiting order number: </label>
+            <input required type="text" #id/>
+            <button type="submit" class="action-button small">Locate order.</button>
+        </form>
         <form (ngSubmit)="createOrder(currentOrderName)">
-            <label>Order name: </label>
+            <label>Choose new order name: </label>
             <input required type="text" [(ngModel)]="currentOrderName" [ngModelOptions]="{standalone: true}" />
             <button type="submit" class="action-button small">Begin an order!</button>
         </form>
@@ -16,7 +21,7 @@
     </div>
 
     <div id="browsing">
-        <h4>Browse for widgets by category</h4>
+        <h2>Browse for widgets by category</h2>
         <select (change)="updateInventoryList($event.target.value)">
             <option *ngFor="let category of categories" [value]="category.category_id" [selected]="category.category_id === selectedCategoryId">{{category.name}}</option>
         </select>

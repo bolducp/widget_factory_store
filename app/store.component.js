@@ -31,10 +31,20 @@ var StoreComponent = (function () {
     StoreComponent.prototype.goToOrdersPage = function (id) {
         this.router.navigate(["/orders", id]);
     };
+    StoreComponent.prototype.getOrder = function (id) {
+        var _this = this;
+        console.log(id);
+        this.orderDataService.getOrder(id)
+            .subscribe(function (data) {
+            _this.currentOrderId = data.order_id;
+            _this.currentOrderName = data.name;
+        });
+    };
     StoreComponent.prototype.createOrder = function (name) {
         var _this = this;
         this.orderDataService.createNewOrder(name)
             .subscribe(function (data) {
+            _this.currentOrderName = name;
             _this.currentOrderId = data.order_id;
         });
     };

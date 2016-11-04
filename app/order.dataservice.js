@@ -47,6 +47,22 @@ var OrderDataService = (function () {
             });
         });
     };
+    OrderDataService.prototype.getOrder = function (orderId) {
+        var _this = this;
+        return rxjs_1.Observable.create(function (observable) {
+            _this.http
+                .get("https://challenge.emocha.com/order/" + orderId)
+                .map(function (r) { return r.json().data.item; })
+                .subscribe(function (data) {
+                observable.next(data);
+                observable.complete();
+            }, function (error) {
+                console.error("Error caught while finding order: ", error);
+                observable.next([]);
+                observable.complete();
+            });
+        });
+    };
     OrderDataService.prototype.createNewOrder = function (name) {
         var _this = this;
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });

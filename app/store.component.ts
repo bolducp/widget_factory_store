@@ -37,9 +37,19 @@ export class StoreComponent implements OnInit {
         this.router.navigate(["/orders", id]);
     }
 
+    getOrder(id: string) {
+        console.log(id);
+        this.orderDataService.getOrder(id)
+            .subscribe((data) => {
+                this.currentOrderId = data.order_id;
+                this.currentOrderName = data.name;
+            });
+    }
+
     createOrder(name: string) {
         this.orderDataService.createNewOrder(name)
             .subscribe((data) => {
+                this.currentOrderName = name;
                 this.currentOrderId = data.order_id;
             });
     }
