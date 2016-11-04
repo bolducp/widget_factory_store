@@ -6,7 +6,7 @@
             <option *ngFor="let category of categories" [value]="category.category_id" [selected]="category.category_id === selectedCategoryId">{{category.name}}</option>
         </select>
         <div *ngFor="let widget of widgets"  class="col-1-4">
-            <h4>{{widget.name}}</h4>
+            <widget-listing [widget]="widget"></widget-listing>
         </div>
     </div>
 </div>

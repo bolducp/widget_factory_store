@@ -24,7 +24,6 @@ var OrderComponent = (function () {
             _this.orderDataService.getOrder(id)
                 .subscribe(function (order) {
                 _this.order = order;
-                console.log(order);
             });
         });
     };

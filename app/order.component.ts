@@ -26,7 +26,6 @@ export class OrderComponent implements OnInit {
             this.orderDataService.getOrder(id)
                 .subscribe((order) => {
                     this.order = order;
-                    console.log(order);
                 });
             });
         }

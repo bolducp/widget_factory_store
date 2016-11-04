@@ -19,6 +19,7 @@ var store_component_1 = require("./store.component");
 var order_component_1 = require("./order.component");
 var widget_dataservice_1 = require("./widget.dataservice");
 var order_dataservice_1 = require("./order.dataservice");
+var widget_listing_component_1 = require("./widget.listing.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -34,6 +35,7 @@ var AppModule = (function () {
                 app_component_1.AppComponent,
                 store_component_1.StoreComponent,
                 order_component_1.OrderComponent,
+                widget_listing_component_1.WidgetListingComponent
             ],
             providers: [widget_dataservice_1.WidgetDataService, order_dataservice_1.OrderDataService],
             bootstrap: [app_component_1.AppComponent]

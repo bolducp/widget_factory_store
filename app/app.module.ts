@@ -10,6 +10,7 @@ import { StoreComponent } from "./store.component";
 import { OrderComponent } from "./order.component";
 import { WidgetDataService } from "./widget.dataservice";
 import { OrderDataService } from "./order.dataservice";
+import { WidgetListingComponent } from "./widget.listing.component";
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { OrderDataService } from "./order.dataservice";
     AppComponent,
     StoreComponent,
     OrderComponent,
+    WidgetListingComponent
   ],
   providers: [ WidgetDataService, OrderDataService ],
   bootstrap: [ AppComponent ]

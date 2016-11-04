@@ -1,0 +1,6 @@
+<div class="listing">
+    <p>{{widget.name}}</p>
+    <div class="widget_icon"></div>
+    <p *ngIf="widget.description">Description: {{widget.description}}</p>
+    <p *ngIf="widget.price_cents">{{ (widget.price_cents / 100) |  currency:'USD':true:'1.2-2'}}</p>
+</div>
