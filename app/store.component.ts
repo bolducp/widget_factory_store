@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 
 import { Widget } from "./widget";
-import { WidgetDataService, Category, Size } from "./widget.dataservice";
+import { WidgetDataService, Category, Size, Color } from "./widget.dataservice";
 import { Order } from "./order";
 import { OrderDataService } from "./order.dataservice";
 
@@ -16,9 +16,11 @@ import { OrderDataService } from "./order.dataservice";
 export class StoreComponent implements OnInit {
     widgets: Array<Widget>;
     categories: Array<Category>;
-    sizes: Array<any>;
+    sizes: Array<Size>;
+    colors: Array<Color>;
     selectedCategory: Category = null;
     selectedSize: Size = null;
+    selectedColor: Color = null;
     currentOrderName: string = null;
     currentOrderId: number = null;
 
@@ -37,6 +39,11 @@ export class StoreComponent implements OnInit {
         this.widgetDataService.getSizes()
             .subscribe((sizes) => {
                 this.sizes = sizes;
+            });
+
+        this.widgetDataService.getColors()
+            .subscribe((colors) => {
+                this.colors = colors;
             });
     }
 
@@ -61,7 +68,12 @@ export class StoreComponent implements OnInit {
     }
 
     updateInventoryList(filterType: string, filterId: number) {
-        if (filterType === "size") {
+        if (filterId == 0) {
+            this.updateSelectedCategory(+this.selectedCategory.category_id);
+            this.resetSelectedColorAndSize();
+
+        } else if (filterType === "size") {
+            this.resetSelectedColorAndSize();
             this.selectedSize = this.getSelectedSizeFromId(filterId);
 
             this.widgetDataService.getWidgetsByCategoryAndSize(+this.selectedCategory.category_id, filterId)
@@ -70,7 +82,19 @@ export class StoreComponent implements OnInit {
             });
         } else if (filterType === "color") {
             console.log("filter by color");
+            this.resetSelectedColorAndSize();
+            this.selectedColor = this.getSelectedColorFromId(filterId);
+
+            this.widgetDataService.getWidgetsByCategoryAndColor(+this.selectedCategory.category_id, filterId)
+                .subscribe((widgets) => {
+                    this.widgets = widgets;
+            });
         }
+    }
+
+    private resetSelectedColorAndSize(): void {
+        this.selectedSize = null;
+        this.selectedColor = null;
     }
 
     updateSelectedCategory(categoryId: number) {
@@ -94,5 +118,12 @@ export class StoreComponent implements OnInit {
             return obj.size_id == sizeId;
         });
         return filteredSizeArray[0];
+    }
+
+    private  getSelectedColorFromId(colorId: number) {
+        let filteredColorArray = this.colors.filter(function( obj ) {
+            return obj.color_id == colorId;
+        });
+        return filteredColorArray[0];
     }
 }

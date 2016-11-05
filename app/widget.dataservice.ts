@@ -59,6 +59,23 @@ export class WidgetDataService {
         });
     }
 
+    getColors(): Observable<Array<Color>> {
+        return Observable.create((observable) => {
+            this.http
+                .get("https://challenge.emocha.com/colors")
+                .map((r: Response) => r.json().data.items)
+                .subscribe((data) => {
+                        observable.next(data);
+                        observable.complete();
+                    }, (error) => {
+                        console.error("Error caught while getting colors: ", error);
+                        observable.next([]);
+                        observable.complete();
+                    }
+                );
+        });
+    }
+
     getWidgetsByCategory(id: number): Observable<Array<Widget>> {
         return Observable.create((observable) => {
             this.http
@@ -93,6 +110,23 @@ export class WidgetDataService {
         });
     }
 
+     getWidgetsByCategoryAndColor(categoryId: number, colorId: number): Observable<Array<Widget>> {
+        return Observable.create((observable) => {
+            this.http
+                .get(`https://challenge.emocha.com/widgets?category_id=${categoryId}&color_id=${colorId}`)
+                .map((r: Response) => r.json().data.items)
+                .subscribe((data) => {
+                        observable.next(data);
+                        observable.complete();
+                 }, (error) => {
+                        console.error("Error caught while getting widgets by both category and color: ", error);
+                        observable.next([]);
+                        observable.complete();
+                    }
+                );
+        });
+    }
+
     getWidgetColor(id: number): Observable<any> {
         return Observable.create((observable) => {
             this.http
@@ -120,5 +154,10 @@ export class Category {
 
 export class Size {
     size_id: number;
+    name: string;
+}
+
+export class Color {
+    color_id: number;
     name: string;
 }
