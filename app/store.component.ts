@@ -81,7 +81,6 @@ export class StoreComponent implements OnInit {
                     this.widgets = widgets;
             });
         } else if (filterType === "color") {
-            console.log("filter by color");
             this.resetSelectedColorAndSize();
             this.selectedColor = this.getSelectedColorFromId(filterId);
 
