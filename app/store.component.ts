@@ -80,6 +80,7 @@ export class StoreComponent implements OnInit {
                 .subscribe((widgets) => {
                     this.widgets = widgets;
             });
+            
         } else if (filterType === "color") {
             this.resetSelectedColorAndSize();
             this.selectedColor = this.getSelectedColorFromId(filterId);

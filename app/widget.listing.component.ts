@@ -13,11 +13,29 @@ export class WidgetListingComponent implements OnInit {
 
     @Input() widget: Widget;
     color: string;
+    size: string;
    
     ngOnInit(): void {
          this.widgetDataService.getWidgetColor(this.widget.color_id)
             .subscribe((color) => {
                 this.color = color.name;
             });
+
+        this.widgetDataService.getWidgetSize(this.widget.size_id)
+            .subscribe((size) => {
+                this.size = size.name;
+            });
+    }
+
+    isSmall(size): boolean {
+        return size == 3;
+    }
+
+    isLittle(size): boolean {
+        return size == 1;
+    }
+
+    isTiny(size): boolean {
+        return size == 2;
     }
 }

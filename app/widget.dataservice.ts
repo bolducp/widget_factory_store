@@ -136,7 +136,25 @@ export class WidgetDataService {
                         observable.next(data);
                         observable.complete();
                  }, (error) => {
-                        console.error("Error caught while getting widgets by category: ", error);
+                        console.error("Error caught while getting widget color: ", error);
+                        observable.next([]);
+                        observable.complete();
+                    }
+                );
+        });
+
+    }
+
+    getWidgetSize(id: number): Observable<any> {
+        return Observable.create((observable) => {
+            this.http
+                .get("https://challenge.emocha.com/size/" + id)
+                .map((r: Response) => r.json().data.item)
+                .subscribe((data) => {
+                        observable.next(data);
+                        observable.complete();
+                 }, (error) => {
+                        console.error("Error caught while getting widget size: ", error);
                         observable.next([]);
                         observable.complete();
                     }

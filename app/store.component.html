@@ -44,7 +44,7 @@
         <h4 *ngIf="selectedSize">{{selectedSize.name}} Widgets</h4>
         <h4 *ngIf="selectedColor">{{selectedColor.name}} Widgets</h4>
 
-        <div *ngFor="let widget of widgets"  class="col-1-4">
+        <div *ngFor="let widget of widgets">
             <widget-listing [widget]="widget"></widget-listing>
         </div>
     </div>
