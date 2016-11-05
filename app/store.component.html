@@ -23,16 +23,18 @@
     <div id="browsing">
         <h2>Browse for widgets by category</h2>
         <select (change)="updateSelectedCategory($event.target.value)">
-            <option *ngFor="let category of categories" [value]="category.category_id" [selected]="category.category_id === selectedCategoryId">{{category.name}}</option>
+            <option *ngFor="let category of categories" [value]="category.category_id">{{category.name}}</option>
         </select>
 
         <div *ngIf="selectedCategory">   
             <h2>Search for {{selectedCategory.name}} widgets by size</h2>
             <select (change)="updateInventoryList('size', $event.target.value)">
-                <option *ngFor="let size of sizes" [value]="size.size_id" [selected]="size.size_id === selectedSizeId">{{size.name}}</option>
+                <option *ngFor="let size of sizes" [value]="size.size_id">{{size.name}}</option>
             </select>
         </div>
-        
+
+        <h3 *ngIf="selectedSize">{{selectedSize.name}} Widgets</h3>
+
         <div *ngFor="let widget of widgets"  class="col-1-4">
             <widget-listing [widget]="widget"></widget-listing>
         </div>

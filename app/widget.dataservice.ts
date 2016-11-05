@@ -74,7 +74,23 @@ export class WidgetDataService {
                     }
                 );
         });
-
+    }
+    
+    getWidgetsByCategoryAndSize(categoryId: number, sizeId: number): Observable<Array<Widget>> {
+        return Observable.create((observable) => {
+            this.http
+                .get(`https://challenge.emocha.com/widgets?category_id=${categoryId}&size_id=${sizeId}`)
+                .map((r: Response) => r.json().data.items)
+                .subscribe((data) => {
+                        observable.next(data);
+                        observable.complete();
+                 }, (error) => {
+                        console.error("Error caught while getting widgets by both category and size: ", error);
+                        observable.next([]);
+                        observable.complete();
+                    }
+                );
+        });
     }
 
     getWidgetColor(id: number): Observable<any> {

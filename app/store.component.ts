@@ -18,12 +18,9 @@ export class StoreComponent implements OnInit {
     categories: Array<Category>;
     sizes: Array<any>;
     selectedCategory: Category = null;
-    selectedCategoryId: string = null;
     selectedSize: Size = null;
-    selectedSizeId: string = null;
     currentOrderName: string = null;
     currentOrderId: number = null;
-    
 
     constructor(
         private router: Router,
@@ -63,9 +60,14 @@ export class StoreComponent implements OnInit {
             });
     }
 
-    updateInventoryList(filterType: string, categoryId: number) {
+    updateInventoryList(filterType: string, filterId: number) {
         if (filterType === "size") {
-            console.log("filter by size size");
+            this.selectedSize = this.getSelectedSizeFromId(filterId);
+
+            this.widgetDataService.getWidgetsByCategoryAndSize(+this.selectedCategory.category_id, filterId)
+                .subscribe((widgets) => {
+                    this.widgets = widgets;
+            });
         } else if (filterType === "color") {
             console.log("filter by color");
         }
@@ -80,10 +82,17 @@ export class StoreComponent implements OnInit {
             });
     }
 
-    getSelectedCategoryFromId(categoryId: number) {
+    private getSelectedCategoryFromId(categoryId: number) {
         let filteredCategoryArray = this.categories.filter(function( obj ) {
             return obj.category_id == categoryId;
         });
         return filteredCategoryArray[0];
+    }
+
+    private  getSelectedSizeFromId(sizeId: number) {
+        let filteredSizeArray = this.sizes.filter(function( obj ) {
+            return obj.size_id == sizeId;
+        });
+        return filteredSizeArray[0];
     }
 }
