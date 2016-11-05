@@ -24,6 +24,7 @@ Note: This project requires node and npm. Instuctions for installing them can be
 8. Implement functionality for adding additional values for existing Widget properties (eg, add a new color or size).
 9. Reorganize files in the app directory into smaller sub-directories by view and functionality.
 10. Setup a build system using Gulp that will compile the Typescript into Javascript and funnel into a separate 'public' folder. Also perform Less or Sass compilation into CSS, so that styling can be done in a pre-processing language.
+11. Add auto scrolling to bring focus down to store/order main area when navigation link clicked.
 
 
 
