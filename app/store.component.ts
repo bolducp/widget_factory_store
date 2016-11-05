@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 
 import { Widget } from "./widget";
-import { WidgetDataService } from "./widget.dataservice";
+import { WidgetDataService, Category, Size } from "./widget.dataservice";
 import { Order } from "./order";
 import { OrderDataService } from "./order.dataservice";
 
@@ -15,10 +15,15 @@ import { OrderDataService } from "./order.dataservice";
 
 export class StoreComponent implements OnInit {
     widgets: Array<Widget>;
-    categories: Array<any>;
-    selectedCategoryID: number = null;
+    categories: Array<Category>;
+    sizes: Array<any>;
+    selectedCategory: Category = null;
+    selectedCategoryId: string = null;
+    selectedSize: Size = null;
+    selectedSizeId: string = null;
     currentOrderName: string = null;
     currentOrderId: number = null;
+    
 
     constructor(
         private router: Router,
@@ -30,6 +35,11 @@ export class StoreComponent implements OnInit {
         this.widgetDataService.getCategories()
             .subscribe((categories) => {
                 this.categories = categories;
+            });
+
+        this.widgetDataService.getSizes()
+            .subscribe((sizes) => {
+                this.sizes = sizes;
             });
     }
 
@@ -53,12 +63,27 @@ export class StoreComponent implements OnInit {
             });
     }
 
-    updateInventoryList(categoryId: number) {
-        this.selectedCategoryID = categoryId;
+    updateInventoryList(filterType: string, categoryId: number) {
+        if (filterType === "size") {
+            console.log("filter by size size");
+        } else if (filterType === "color") {
+            console.log("filter by color");
+        }
+    }
+
+    updateSelectedCategory(categoryId: number) {
+        this.selectedCategory = this.getSelectedCategoryFromId(categoryId);
 
         this.widgetDataService.getWidgetsByCategory(categoryId)
             .subscribe((widgets) => {
                 this.widgets = widgets;
             });
+    }
+
+    getSelectedCategoryFromId(categoryId: number) {
+        let filteredCategoryArray = this.categories.filter(function( obj ) {
+            return obj.category_id == categoryId;
+        });
+        return filteredCategoryArray[0];
     }
 }
