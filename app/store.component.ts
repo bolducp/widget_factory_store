@@ -6,6 +6,8 @@ import { WidgetDataService, Category, Size, Color } from "./widget.dataservice";
 import { Order } from "./order";
 import { OrderDataService } from "./order.dataservice";
 
+// declare var swal: any;
+
 @Component({
     moduleId: module.id,
     selector: "widget-store",
@@ -29,6 +31,7 @@ export class StoreComponent implements OnInit {
         private widgetDataService: WidgetDataService,
         private orderDataService: OrderDataService) {
     }
+    
 
     ngOnInit(): void {
         this.widgetDataService.getCategories()
@@ -128,10 +131,9 @@ export class StoreComponent implements OnInit {
     }
 
     addWidgetToOrder(widgetId, quantity=1){
-        console.log("!!!", widgetId);
          this.orderDataService.addWidgetToOrder(this.currentOrderId, widgetId, quantity)
             .subscribe((data) => {
-                console.log(data);
+                // swal("Widget successfully added to your order.");
             });
     }
 }
