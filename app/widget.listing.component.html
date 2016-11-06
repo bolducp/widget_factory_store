@@ -7,4 +7,5 @@
     <p *ngIf="widget.in_stock">Currently in stock: {{widget.in_stock}}</p>
     <p *ngIf="widget.price_cents">Price: {{ (widget.price_cents / 100) |  currency:'USD':true:'1.2-2'}}</p>
     <button *ngIf="currentOrderId" (click)="addWidgetToOrder()">Add to order</button>
+    
 </div>

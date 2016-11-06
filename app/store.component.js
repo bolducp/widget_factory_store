@@ -12,6 +12,7 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var widget_dataservice_1 = require("./widget.dataservice");
 var order_dataservice_1 = require("./order.dataservice");
+// declare var swal: any;
 var StoreComponent = (function () {
     function StoreComponent(router, widgetDataService, orderDataService) {
         this.router = router;
@@ -112,10 +113,9 @@ var StoreComponent = (function () {
     };
     StoreComponent.prototype.addWidgetToOrder = function (widgetId, quantity) {
         if (quantity === void 0) { quantity = 1; }
-        console.log("!!!", widgetId);
         this.orderDataService.addWidgetToOrder(this.currentOrderId, widgetId, quantity)
             .subscribe(function (data) {
-            console.log(data);
+            // swal("Widget successfully added to your order.");
         });
     };
     StoreComponent = __decorate([
@@ -125,10 +125,9 @@ var StoreComponent = (function () {
             templateUrl: "store.component.html",
             styleUrls: ["store.component.css"]
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof router_1.Router !== 'undefined' && router_1.Router) === 'function' && _a) || Object, widget_dataservice_1.WidgetDataService, order_dataservice_1.OrderDataService])
+        __metadata('design:paramtypes', [router_1.Router, widget_dataservice_1.WidgetDataService, order_dataservice_1.OrderDataService])
     ], StoreComponent);
     return StoreComponent;
-    var _a;
 }());
 exports.StoreComponent = StoreComponent;
 //# sourceMappingURL=store.component.js.map
