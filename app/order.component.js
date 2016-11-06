@@ -43,9 +43,10 @@ var OrderComponent = (function () {
             templateUrl: "order.component.html",
             styleUrls: ["order.component.css"]
         }), 
-        __metadata('design:paramtypes', [router_1.Router, router_1.ActivatedRoute, order_dataservice_1.OrderDataService])
+        __metadata('design:paramtypes', [(typeof (_a = typeof router_1.Router !== 'undefined' && router_1.Router) === 'function' && _a) || Object, (typeof (_b = typeof router_1.ActivatedRoute !== 'undefined' && router_1.ActivatedRoute) === 'function' && _b) || Object, order_dataservice_1.OrderDataService])
     ], OrderComponent);
     return OrderComponent;
+    var _a, _b;
 }());
 exports.OrderComponent = OrderComponent;
 //# sourceMappingURL=order.component.js.map

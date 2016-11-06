@@ -125,9 +125,10 @@ var StoreComponent = (function () {
             templateUrl: "store.component.html",
             styleUrls: ["store.component.css"]
         }), 
-        __metadata('design:paramtypes', [router_1.Router, widget_dataservice_1.WidgetDataService, order_dataservice_1.OrderDataService])
+        __metadata('design:paramtypes', [(typeof (_a = typeof router_1.Router !== 'undefined' && router_1.Router) === 'function' && _a) || Object, widget_dataservice_1.WidgetDataService, order_dataservice_1.OrderDataService])
     ], StoreComponent);
     return StoreComponent;
+    var _a;
 }());
 exports.StoreComponent = StoreComponent;
 //# sourceMappingURL=store.component.js.map
