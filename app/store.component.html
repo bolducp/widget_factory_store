@@ -45,7 +45,7 @@
         <h4 *ngIf="selectedColor">{{selectedColor.name}} Widgets</h4>
 
         <div *ngFor="let widget of widgets">
-            <widget-listing [widget]="widget"></widget-listing>
+            <widget-listing [widget]="widget" [currentOrderId]="currentOrderId" (Change)="addWidgetToOrder($event)"></widget-listing>
         </div>
     </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, Output, EventEmitter, OnInit } from "@angular/core";
 import { Widget } from "./widget";
 import { WidgetDataService } from "./widget.dataservice";
 
@@ -10,11 +10,13 @@ import { WidgetDataService } from "./widget.dataservice";
 
 export class WidgetListingComponent implements OnInit {
     constructor(private widgetDataService: WidgetDataService) { }
-
     @Input() widget: Widget;
+    @Input() currentOrderId: number;
+    @Output() Change = new EventEmitter<any>();
+
     color: string;
     size: string;
-   
+
     ngOnInit(): void {
          this.widgetDataService.getWidgetColor(this.widget.color_id)
             .subscribe((color) => {
@@ -37,5 +39,9 @@ export class WidgetListingComponent implements OnInit {
 
     isTiny(size): boolean {
         return size == 2;
+    }
+
+    addWidgetToOrder() {
+        this.Change.emit(this.widget.widget_id);
     }
 }

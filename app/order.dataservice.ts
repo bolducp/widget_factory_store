@@ -62,5 +62,25 @@ export class OrderDataService {
         });
      }
 
+     addWidgetToOrder(orderId, widgetId, quantity):Observable<any> {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        let bodyString = JSON.stringify({"widget_id": widgetId, "quantity": quantity});
+
+        return Observable.create((observable) => {
+            this.http
+                .put(`https://challenge.emocha.com/order/${orderId}`, bodyString, options)
+                .map((r: Response) => r.json().data)
+                .subscribe((data) => {
+                        observable.next(data);
+                        observable.complete();
+                 }, (error) => {
+                        console.error("Error caught while adding widget to order: ", error);
+                        observable.next([]);
+                        observable.complete();
+                    }
+                );
+        });
+     }
 
 }

@@ -126,4 +126,12 @@ export class StoreComponent implements OnInit {
         });
         return filteredColorArray[0];
     }
+
+    addWidgetToOrder(widgetId, quantity=1){
+        console.log("!!!", widgetId);
+         this.orderDataService.addWidgetToOrder(this.currentOrderId, widgetId, quantity)
+            .subscribe((data) => {
+                console.log(data);
+            });
+    }
 }
