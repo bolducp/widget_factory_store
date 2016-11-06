@@ -6,7 +6,7 @@ import { WidgetDataService, Category, Size, Color } from "./widget.dataservice";
 import { Order } from "./order";
 import { OrderDataService } from "./order.dataservice";
 
-declare var swal: any;
+// declare var swal: any;
 
 @Component({
     moduleId: module.id,
@@ -133,7 +133,7 @@ export class StoreComponent implements OnInit {
     addWidgetToOrder(widgetId, quantity=1){
          this.orderDataService.addWidgetToOrder(this.currentOrderId, widgetId, quantity)
             .subscribe((data) => {
-                swal("Widget successfully added to your order.");
+                // swal("Widget successfully added to your order.");
             });
     }
 }
