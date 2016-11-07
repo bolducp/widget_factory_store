@@ -1,5 +1,6 @@
 (function (global) {
   System.config({
+    baseURL: '/widget_factory_store/',
     paths: {
       // paths serve as alias
       'npm:': 'https://unpkg.com/'
