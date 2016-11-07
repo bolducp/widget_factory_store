@@ -16,7 +16,7 @@ Note: This project requires node and npm. Instuctions for installing them can be
 #### Remaining work (in order of priority)
 1. Setup unit tests using Jasmine and Karma. 
 2. ~~Implement functionality to search for Widgets by size or finish.~~
-3. Implement functionality to add a Widget to their order.
+3. ~~Implement functionality to add a Widget to their order.~~
 4. Implement functionality to view an order, remove things from it, or delete the order entirely.
 5. Implement functionality to edit Widget quantities.
 6. Implement functionality add new Widgets (eg, making Widget Extreme Edition available in Medium size, Gold finish).
