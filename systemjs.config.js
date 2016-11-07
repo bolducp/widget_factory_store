@@ -3,7 +3,7 @@
     baseURL: '/widget_factory_store/',
     paths: {
       // paths serve as alias
-      'npm:': 'node_modules/'
+      'npm:': 'https://unpkg.com/'
     },
     // map tells the System loader where to look for things
     map: {
@@ -29,7 +29,6 @@
         defaultExtension: 'js'
       },
       rxjs: {
-        main: 'bundles/Rx.js',
         defaultExtension: 'js'
       }
     }
