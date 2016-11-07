@@ -12,7 +12,6 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var widget_dataservice_1 = require("./widget.dataservice");
 var order_dataservice_1 = require("./order.dataservice");
-// declare var swal: any;
 var StoreComponent = (function () {
     function StoreComponent(router, widgetDataService, orderDataService) {
         this.router = router;
@@ -115,7 +114,7 @@ var StoreComponent = (function () {
         if (quantity === void 0) { quantity = 1; }
         this.orderDataService.addWidgetToOrder(this.currentOrderId, widgetId, quantity)
             .subscribe(function (data) {
-            // swal("Widget successfully added to your order.");
+            swal("Widget successfully added to your order.");
         });
     };
     StoreComponent = __decorate([
